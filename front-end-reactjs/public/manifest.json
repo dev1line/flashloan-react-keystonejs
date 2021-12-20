@@ -1,0 +1,16 @@
+{
+  "short_name": "Flashloan",
+  "name": "Flashloan",
+  "description": "A flash loan is relatively new type of uncollateralized lending that has become popular across a number of decentralized finance (DeFi) protocols based on the Ethereum network.",
+  "icons": [
+    {
+      "src": "/images/icon.ico",
+      "type": "image/x-icon",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

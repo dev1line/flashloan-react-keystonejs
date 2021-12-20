@@ -1,0 +1,5 @@
+napa-website-data/data
+node_modules
+yarn-error.log
+webpack.config.js
+package-lock.json

@@ -1,0 +1,30 @@
+version: "3"
+services:
+  database:
+    image: "mongo:latest"
+    container_name: flashloans-database
+    environment:
+      - MONGO_INITDB_DATABASE=flashloans-database
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=Password1
+
+  # automate restore data
+  # comment this code if you dont want restore data automacy
+  # automatic data restore can be cause data duplicate, redundant.
+  mongo-seed:
+    image: "mongo:latest"
+    links:
+      - database
+    volumes:
+      - ./flashloans-data:/data
+    command: mongorestore --uri mongodb://root:Password1@database:27017 -d admin /data/admin
+
+  # all in docker
+  app:
+    # image: node:latest
+    container_name: "flashloans-server"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
