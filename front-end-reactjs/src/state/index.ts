@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import predictionsReducer from './predictions'
+import FlashloanReducer from './Flashloan'
 
 
 
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
   reducer: {
-    predictions: predictionsReducer,
+    Flashloan: FlashloanReducer,
   },
 })
 

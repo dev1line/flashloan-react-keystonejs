@@ -180,7 +180,7 @@ export interface CollectiblesState {
   }
 }
 
-// Predictions
+// Flashloan
 
 export enum BetPosition {
   BULL = 'Bull',
@@ -188,7 +188,7 @@ export enum BetPosition {
   HOUSE = 'House',
 }
 
-export enum PredictionStatus {
+export enum Flashloantatus {
   INITIAL = 'initial',
   LIVE = 'live',
   PAUSED = 'paused',
@@ -256,12 +256,12 @@ export interface BetData {
 
 export enum HistoryFilter {
   ALL = 'all',
-  COLLECTED = 'collected',
-  UNCOLLECTED = 'uncollected',
+  SUCESS = 'success',
+  FAIL = 'fail',
 }
 
-export interface PredictionsState {
-  status: PredictionStatus
+export interface FlashloanState {
+  status: Flashloantatus
   isLoading: boolean
   isHistoryPaneOpen: boolean
   isChartPaneOpen: boolean
@@ -274,7 +274,7 @@ export interface PredictionsState {
   minBetAmount: string
   lastOraclePrice: string
   rounds: RoundData
-  history: HistoryData
+  // history: HistoryData
   bets: BetData
   contract: {
     address: any,
@@ -282,7 +282,8 @@ export interface PredictionsState {
     provider: any
   },
   reverseCoin: Coin,
-  swiperList: any 
+  swiperList: any,
+  history: any
 }
 
 // Global state
@@ -293,7 +294,7 @@ export interface State {
   farms: FarmsState
   prices: PriceState
   pools: PoolsState
-  predictions: PredictionsState
+  Flashloan: FlashloanState
   profile: ProfileState
   // teams: TeamsState
   // collectibles: CollectiblesState

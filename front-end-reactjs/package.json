@@ -5,19 +5,13 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
+    "build": "react-scripts build CI=false",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format:check": "prettier --check 'src/**/*.{js,jsx,ts,tsx}'",
-    "format:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "format:write": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
     "generate:config": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/generateConfig"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn format:check",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "browserslist": {
     "production": [
@@ -32,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@apollo/client": "^3.5.6",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/abi": "^5.1.2",
     "@pancakeswap/uikit": "^0.32.2",

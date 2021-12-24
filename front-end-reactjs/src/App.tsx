@@ -1,8 +1,9 @@
-import React, { lazy } from 'react'
+import React, { lazy, useEffect } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-
+import { ApolloProvider } from "@apollo/client";
+import {client} from "apolo-client"
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import SuspenseWithChunkError from './components/SuspenseWithChunkError'
@@ -12,20 +13,27 @@ import EasterEgg from './components/EasterEgg'
 
 import history from './routerHistory'
 import useEagerConnect from 'hooks/useEagerConnect'
+// import {ALL_HISTORY} from "./query/general"
 
 const NotFound = lazy(() => import('./views/NotFound'))
-const Predictions = lazy(() => import('./views/Predictions'))
-
-// This config is required for number formatting
+const Home = lazy(() => import('./views/Home'))
+const Guide = lazy(() => import('./views/Guide'))
+const Token = lazy(() => import('./views/Token'))
+const Wallet = lazy(() => import('./views/Wallet'))
+const Flashloan = lazy(() => import('./views/Flashloan'))
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 })
 
 const App: React.FC = () => {
+  // useEffect(async () => {
+  //   const {data} = await client.query({ query: ALL_HISTORY});
+  //   console.log(data);
+  // }, [])
   useEagerConnect()
-
   return (
+    <ApolloProvider client={client}>
     <Router history={history}>
       <ResetCSS />
       <GlobalStyle />
@@ -33,16 +41,25 @@ const App: React.FC = () => {
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
-            <Predictions />
+            <Home />
             </Route>     
+            <Route path="/guide" exact>
+            <Guide />
+            </Route> 
+            <Route path="/token" exact>
+            <Token />
+            </Route> 
+            <Route path="/wallet" exact>
+            <Wallet />
+            </Route> 
             <Route path="/flashloan" exact>
-            <Predictions />
+            <Flashloan />
             </Route>    
             <Route path="/referral" exact>
-            <Predictions />
+            <Flashloan />
             </Route>
             <Route path="/profile" exact>
-            <Predictions />
+            <Flashloan />
             </Route>    
             <Route component={NotFound} />
           </Switch>
@@ -51,6 +68,7 @@ const App: React.FC = () => {
       <EasterEgg iterations={2} />
       <ToastListener />
     </Router>
+    </ApolloProvider>
   )
 }
 

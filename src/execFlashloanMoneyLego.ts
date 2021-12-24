@@ -3,7 +3,7 @@ import { ethers, Wallet, Contract } from "ethers";
 import kovan from './kovanConfig';
 require("dotenv").config()
 
-const FlashloanMoneyLego = require("../UserInterface-UI/contracts/FlashloanMoneyLego.json");
+const FlashloanMoneyLego = require("../front-end-reactjs/src/config/abi/FlashloanMoneyLego.json");
 
 const contractFlashloanMoneyLegoAddress = FlashloanMoneyLego.networks[kovan.networkID].address;
 
@@ -46,38 +46,38 @@ const main = async () => {
   //       factory: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506"
   //     }
   //   ]
-  const aprDAI = await contractFlashloanMoneyLego.approve("0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD", "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",  ethers.utils.parseEther("1000"), { gasLimit: 12500000, }, );
-  const aDai = await aprDAI.wait();
-  const aprBAT = await contractFlashloanMoneyLego.approve("0xd100d3cD2aDA4260009575A976D1E78159e275D2", "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",  ethers.utils.parseEther("1000"),  { gasLimit: 12500000, }, );
-  const aBat = await aprBAT.wait();
-  console.log("ADAI:", aDai);
-  console.log("ABAT:", aBat);
-  // const tx = await contractFlashloanMoneyLego.initateFlashLoan(
-  //   [ 0,
-  //     "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
-  //     ethers.utils.parseEther("1000"),
-  //      [
-  //         [
-  //           "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",   
-  //           "0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",
-  //           ethers.utils.parseEther("1000"),
-  //           "0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",
-  //         ],
-  //         [
-  //           "0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",
-  //           "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
-  //           ethers.utils.parseEther("1000"),
-  //           "0xECc6C0542710a0EF07966D7d1B10fA38bbb86523"          
-  //         ],
-  //      ]
-  //   ],
-  //   { gasLimit: 12500000, },
-  // );
+  // const aprDAI = await contractFlashloanMoneyLego.approve("0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD", "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",  ethers.utils.parseEther("1000"), { gasLimit: 12500000, }, );
+  // const aDai = await aprDAI.wait();
+  // const aprBAT = await contractFlashloanMoneyLego.approve("0xd100d3cD2aDA4260009575A976D1E78159e275D2", "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",  ethers.utils.parseEther("1000"),  { gasLimit: 12500000, }, );
+  // const aBat = await aprBAT.wait();
+  // console.log("ADAI:", aDai);
+  // console.log("ABAT:", aBat);
   const tx = await contractFlashloanMoneyLego.initateFlashLoan(
-    // ["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,[["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0xd100d3cD2aDA4260009575A976D1E78159e275D2",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xd100d3cD2aDA4260009575A976D1E78159e275D2","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",100000000,"0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",0 ],["0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0xECc6C0542710a0EF07966D7d1B10fA38bbb86523",0]]],
-    ["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,[["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0xd100d3cD2aDA4260009575A976D1E78159e275D2",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xd100d3cD2aDA4260009575A976D1E78159e275D2","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",100000000,"0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",0 ],["0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0xECc6C0542710a0EF07966D7d1B10fA38bbb86523",0]]],
+    [
+      "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
+      ethers.utils.parseEther("1000"),
+       [
+          [
+            "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",   
+            "0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",
+            "0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",
+            0
+          ],
+          [
+            "0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",
+            "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
+            "0xECc6C0542710a0EF07966D7d1B10fA38bbb86523",      
+            0
+          ],
+       ]
+    ],
     { gasLimit: 12500000, },
   );
+  // const tx = await contractFlashloanMoneyLego.initateFlashLoan(
+  //   ["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",10000000,[["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0xd100d3cD2aDA4260009575A976D1E78159e275D2","0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xd100d3cD2aDA4260009575A976D1E78159e275D2","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738","0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",0],["0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0xECc6C0542710a0EF07966D7d1B10fA38bbb86523",0]]],
+  //   // ["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,[["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0xd100d3cD2aDA4260009575A976D1E78159e275D2",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xd100d3cD2aDA4260009575A976D1E78159e275D2","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",1],["0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD","0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",100000000,"0x54Ac34e5cE84C501165674782582ADce2FDdc8F4",0 ],["0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738","0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",100000000,"0xECc6C0542710a0EF07966D7d1B10fA38bbb86523",0]]],
+  //   { gasLimit: 12500000, },
+  // );
   // Inspect the issued transaction
   console.log(tx);
   let receipt = await tx.wait();

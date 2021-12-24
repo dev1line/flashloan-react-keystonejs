@@ -17,9 +17,9 @@ const PageSchema = require("./schema/Page");
 const LayoutSchema = require("./schema/Layout");
 const PropertySchema = require("./schema/Property");
 const CustomerSchema = require("./schema/Customer");
-const BannerSchema = require("./schema/Banner");
-const ContactSchema = require("./schema/Contact");
-const VideoSchema = require("./schema/Video");
+const HistorySchema = require("./schema/History");
+const ReferralSchema = require("./schema/Referral");
+const TokenSchema = require("./schema/Token");
 
 const { initialAction } = require("./inital-data");
 
@@ -54,10 +54,10 @@ const listSchema = [
   { name: "Page", schema: PageSchema },
   { name: "Layout", schema: LayoutSchema },
   { name: "Property", schema: PropertySchema },
-  { name: "Contact", schema: ContactSchema },
-  { name: "Banner", schema: BannerSchema },
   { name: "Customer", schema: CustomerSchema },
-  { name: "Video", schema: VideoSchema },
+  { name: "History", schema: HistorySchema },
+  { name: "Referral", schema: ReferralSchema },
+  { name: "Token", schema: TokenSchema },
 ];
 
 listSchema.map(({ name, schema }) => keystone.createList(name, schema));
