@@ -39,7 +39,7 @@ const RoundsTab: React.FC<RoundsTabProps> = ({ hasBetHistory, bets }) => {
   ) : (
     <Box p="24px">
       <Heading size="lg" textAlign="center" mb="8px">
-        {t('No prediction history available')}
+        {t('No transaction history available')}
       </Heading>
       <Text as="p" textAlign="center">
         {t(
