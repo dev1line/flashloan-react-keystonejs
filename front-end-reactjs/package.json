@@ -13,12 +13,6 @@
     "format:write": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
     "generate:config": "ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/generateConfig"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "prettier": "prettier 'src/**/*'",
   "browserslist": {
     "production": [
       ">0.2%",
