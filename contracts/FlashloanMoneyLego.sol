@@ -1,223 +1,7 @@
 pragma solidity =0.6.6;
 pragma experimental ABIEncoderV2;
-// import "@uniswap/v2-periphery/contracts/interfaces/IERC20.sol";
-
 import "@studydefi/money-legos/uniswapV2/contracts/IUniswapV2Router02.sol";
 import "@openZeppelin/contracts/presets/ERC20PresetMinterPauser.sol";
-
-// import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
-
-// import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-
-// library SafeMath {
-//     /**
-//      * @dev Returns the addition of two unsigned integers, reverting on
-//      * overflow.
-//      *
-//      * Counterpart to Solidity's `+` operator.
-//      *
-//      * Requirements:
-//      * - Addition cannot overflow.
-//      */
-//     function add(uint256 a, uint256 b) internal pure returns (uint256) {
-//         uint256 c = a + b;
-//         require(c >= a, "SafeMath: addition overflow");
-
-//         return c;
-//     }
-
-//     /**
-//      * @dev Returns the subtraction of two unsigned integers, reverting on
-//      * overflow (when the result is negative).
-//      *
-//      * Counterpart to Solidity's `-` operator.
-//      *
-//      * Requirements:
-//      * - Subtraction cannot overflow.
-//      */
-//     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-//         return sub(a, b, "SafeMath: subtraction overflow");
-//     }
-
-//     /**
-//      * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
-//      * overflow (when the result is negative).
-//      *
-//      * Counterpart to Solidity's `-` operator.
-//      *
-//      * Requirements:
-//      * - Subtraction cannot overflow.
-//      */
-//     function sub(
-//         uint256 a,
-//         uint256 b,
-//         string memory errorMessage
-//     ) internal pure returns (uint256) {
-//         require(b <= a, errorMessage);
-//         uint256 c = a - b;
-
-//         return c;
-//     }
-
-//     /**
-//      * @dev Returns the multiplication of two unsigned integers, reverting on
-//      * overflow.
-//      *
-//      * Counterpart to Solidity's `*` operator.
-//      *
-//      * Requirements:
-//      * - Multiplication cannot overflow.
-//      */
-//     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-//         // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-//         // benefit is lost if 'b' is also tested.
-//         // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
-//         if (a == 0) {
-//             return 0;
-//         }
-
-//         uint256 c = a * b;
-//         require(c / a == b, "SafeMath: multiplication overflow");
-
-//         return c;
-//     }
-
-//     /**
-//      * @dev Returns the integer division of two unsigned integers. Reverts on
-//      * division by zero. The result is rounded towards zero.
-//      *
-//      * Counterpart to Solidity's `/` operator. Note: this function uses a
-//      * `revert` opcode (which leaves remaining gas untouched) while Solidity
-//      * uses an invalid opcode to revert (consuming all remaining gas).
-//      *
-//      * Requirements:
-//      * - The divisor cannot be zero.
-//      */
-//     function div(uint256 a, uint256 b) internal pure returns (uint256) {
-//         return div(a, b, "SafeMath: division by zero");
-//     }
-
-//     /**
-//      * @dev Returns the integer division of two unsigned integers. Reverts with custom message on
-//      * division by zero. The result is rounded towards zero.
-//      *
-//      * Counterpart to Solidity's `/` operator. Note: this function uses a
-//      * `revert` opcode (which leaves remaining gas untouched) while Solidity
-//      * uses an invalid opcode to revert (consuming all remaining gas).
-//      *
-//      * Requirements:
-//      * - The divisor cannot be zero.
-//      */
-//     function div(
-//         uint256 a,
-//         uint256 b,
-//         string memory errorMessage
-//     ) internal pure returns (uint256) {
-//         // Solidity only automatically asserts when dividing by 0
-//         require(b > 0, errorMessage);
-//         uint256 c = a / b;
-//         // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-
-//         return c;
-//     }
-
-//     /**
-//      * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-//      * Reverts when dividing by zero.
-//      *
-//      * Counterpart to Solidity's `%` operator. This function uses a `revert`
-//      * opcode (which leaves remaining gas untouched) while Solidity uses an
-//      * invalid opcode to revert (consuming all remaining gas).
-//      *
-//      * Requirements:
-//      * - The divisor cannot be zero.
-//      */
-//     function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-//         return mod(a, b, "SafeMath: modulo by zero");
-//     }
-
-//     /**
-//      * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-//      * Reverts with custom message when dividing by zero.
-//      *
-//      * Counterpart to Solidity's `%` operator. This function uses a `revert`
-//      * opcode (which leaves remaining gas untouched) while Solidity uses an
-//      * invalid opcode to revert (consuming all remaining gas).
-//      *
-//      * Requirements:
-//      * - The divisor cannot be zero.
-//      */
-//     function mod(
-//         uint256 a,
-//         uint256 b,
-//         string memory errorMessage
-//     ) internal pure returns (uint256) {
-//         require(b != 0, errorMessage);
-//         return a % b;
-//     }
-// }
-
-// library Address {
-//     /**
-//      * @dev Returns true if `account` is a contract.
-//      *
-//      * [IMPORTANT]
-//      * ====
-//      * It is unsafe to assume that an address for which this function returns
-//      * false is an externally-owned account (EOA) and not a contract.
-//      *
-//      * Among others, `isContract` will return false for the following
-//      * types of addresses:
-//      *
-//      *  - an externally-owned account
-//      *  - a contract in construction
-//      *  - an address where a contract will be created
-//      *  - an address where a contract lived, but was destroyed
-//      * ====
-//      */
-//     function isContract(address account) internal view returns (bool) {
-//         // According to EIP-1052, 0x0 is the value returned for not-yet created accounts
-//         // and 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470 is returned
-//         // for accounts without code, i.e. `keccak256('')`
-//         bytes32 codehash;
-//         bytes32 accountHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
-//         // solhint-disable-next-line no-inline-assembly
-//         assembly {
-//             codehash := extcodehash(account)
-//         }
-//         return (codehash != accountHash && codehash != 0x0);
-//     }
-
-//     /**
-//      * @dev Replacement for Solidity's `transfer`: sends `amount` wei to
-//      * `recipient`, forwarding all available gas and reverting on errors.
-//      *
-//      * https://eips.ethereum.org/EIPS/eip-1884[EIP1884] increases the gas cost
-//      * of certain opcodes, possibly making contracts go over the 2300 gas limit
-//      * imposed by `transfer`, making them unable to receive funds via
-//      * `transfer`. {sendValue} removes this limitation.
-//      *
-//      * https://diligence.consensys.net/posts/2019/09/stop-using-soliditys-transfer-now/[Learn more].
-//      *
-//      * IMPORTANT: because control is transferred to `recipient`, care must be
-//      * taken to not create reentrancy vulnerabilities. Consider using
-//      * {ReentrancyGuard} or the
-//      * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
-//      */
-//     function sendValue(address payable recipient, uint256 amount) internal {
-//         require(
-//             address(this).balance >= amount,
-//             "Address: insufficient balance"
-//         );
-
-//         // solhint-disable-next-line avoid-low-level-calls, avoid-call-value
-//         (bool success, ) = recipient.call{value: amount}("");
-//         require(
-//             success,
-//             "Address: unable to send value, recipient may have reverted"
-//         );
-//     }
-// }
 
 library SafeERC20 {
     using SafeMath for uint256;
@@ -800,13 +584,21 @@ contract FlashLoanReceiverBase is IFlashLoanReceiver {
     }
 }
 
+contract myToken is ERC20PresetMinterPauser {
+    constructor(string memory name, string memory symbol)
+        public
+        ERC20PresetMinterPauser(name, symbol)
+    {}
+}
+
 contract FlashloanMoneyLego is FlashLoanReceiverBase {
     address public constant AaveLendingPoolAddressProviderAddress =
         0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5;
 
+    // myToken public token;
+    uint256 public profit;
     mapping(address => uint256) public balances;
 
-    mapping(address => uint256) public coiner;
     enum version {
         V1,
         V2,
@@ -815,7 +607,7 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
     struct blocker {
         address tokenIn;
         address tokenOut;
-        // uint256 amountIn;
+        // uint amount;
         address factory;
         version ver;
     }
@@ -854,6 +646,9 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
         balances[reverse] = _amount;
 
         for (uint256 i = 0; i < blocks.length; i++) {
+            if (IERC20(blocks[i].tokenIn).balanceOf(address(this)) == 0) {
+                continue;
+            }
             if (blocks[i].ver == version.V1) {
                 IERC20(blocks[i].tokenIn).approve(
                     address(
@@ -919,11 +714,8 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
         uint256 amount = _amount;
 
         uint256 totalDebt = amount + fee;
-
-        require(
-            IERC20(reverse).balanceOf(address(this)) > totalDebt,
-            "There is no profit! Reverting!"
-        );
+        profit = IERC20(reverse).balanceOf(address(this));
+        require(profit > totalDebt, "There is no profit! Reverting!");
 
         transferFundsBackToPoolInternal(reverse, amount + fee);
     }
@@ -945,7 +737,7 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
         lendingPool.flashLoan(address(this), action.who, action.amount, data);
 
         // If there is still a balance of the loan asset then this is profit to be returned to sender!
-        uint256 profit = IERC20(action.who).balanceOf(address(this));
+
         require(
             IERC20(action.who).transfer(msg.sender, profit),
             "Could not transfer back the profit"
@@ -969,4 +761,23 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
     ) public {
         IERC20(tokenIn).approve(spender, amount);
     }
+
+    // function createToken(string memory name, string memory symbol) public {
+    //     token = new myToken(name, symbol);
+    // }
+
+    // function mint(address to, uint256 amount) public {
+    //     token.mint(to, amount);
+    // }
 }
+// contract HandleToken {
+//     myToken public token;
+
+//     function createToken(string memory name, string memory symbol) public {
+//         token = new myToken(name, symbol);
+//     }
+
+//     function mint(address to, uint amount) public {
+//         token.mint(to, amount);
+//     }
+// }

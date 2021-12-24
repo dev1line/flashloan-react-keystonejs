@@ -17,7 +17,7 @@ import { State, Farm, Pool, ProfileState, PriceState, FarmsState } from './types
 // import { fetchAchievements } from './achievements'
 
 
-import { getCanClaim } from './predictions/helpers'
+// import { getCanClaim } from './Flashloan/helpers'
 
 
 // Farms
@@ -120,10 +120,10 @@ export const useCakeVault = () => {
 
 // Profile
 
-export const useProfile = () => {
-  const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
-  return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
-}
+// export const useProfile = () => {
+//   const { isInitialized, isLoading, data, hasRegistered }: ProfileState = useSelector((state: State) => state.profile)
+//   return { profile: data, hasProfile: isInitialized && hasRegistered, isInitialized, isLoading }
+// }
 
 // Teams
 
@@ -171,17 +171,17 @@ export const useInitialBlock = () => {
   return useSelector((state: State) => state.block.initialBlock)
 }
 
-// Predictions
+// Flashloan
 export const useIsHistoryPaneOpen = () => {
-  return useSelector((state: State) => state.predictions.isHistoryPaneOpen)
+  return useSelector((state: State) => state.Flashloan.isHistoryPaneOpen)
 }
 
 export const useIsChartPaneOpen = () => {
-  return useSelector((state: State) => state.predictions.isChartPaneOpen)
+  return useSelector((state: State) => state.Flashloan.isChartPaneOpen)
 }
 
 export const useGetRounds = () => {
-  return useSelector((state: State) => state.predictions.rounds)
+  return useSelector((state: State) => state.Flashloan.rounds)
 }
 
 export const useGetSortedRounds = () => {
@@ -190,15 +190,15 @@ export const useGetSortedRounds = () => {
 }
 
 export const useGetCurrentEpoch = () => {
-  return useSelector((state: State) => state.predictions.currentEpoch)
+  return useSelector((state: State) => state.Flashloan.currentEpoch)
 }
 
 export const useGetIntervalBlocks = () => {
-  return useSelector((state: State) => state.predictions.intervalBlocks)
+  return useSelector((state: State) => state.Flashloan.intervalBlocks)
 }
 
 export const useGetBufferBlocks = () => {
-  return useSelector((state: State) => state.predictions.bufferBlocks)
+  return useSelector((state: State) => state.Flashloan.bufferBlocks)
 }
 
 export const useGetTotalIntervalBlocks = () => {
@@ -218,29 +218,29 @@ export const useGetCurrentRound = () => {
   return rounds.find((round) => round.epoch === currentEpoch)
 }
 
-export const useGetPredictionsStatus = () => {
-  return "live";//useSelector((state: State) => state.predictions.status)
+export const useGetFlashloanStatus = () => {
+  return "live";//useSelector((state: State) => state.Flashloan.status)
 }
 
 export const useGetHistoryFilter = () => {
-  return useSelector((state: State) => state.predictions.historyFilter)
+  return useSelector((state: State) => state.Flashloan.historyFilter)
 }
 
 export const useGetCurrentRoundBlockNumber = () => {
-  return useSelector((state: State) => state.predictions.currentRoundStartBlockNumber)
+  return useSelector((state: State) => state.Flashloan.currentRoundStartBlockNumber)
 }
 
 export const useGetMinBetAmount = () => {
-  const minBetAmount = useSelector((state: State) => state.predictions.minBetAmount)
+  const minBetAmount = useSelector((state: State) => state.Flashloan.minBetAmount)
   return useMemo(() => new BigNumber(minBetAmount), [minBetAmount])
 }
 
 export const useGetIsFetchingHistory = () => {
-  return useSelector((state: State) => state.predictions.isFetchingHistory)
+  return useSelector((state: State) => state.Flashloan.isFetchingHistory)
 }
 
 export const useGetHistory = () => {
-  return useSelector((state: State) => state.predictions.history)
+  return useSelector((state: State) => state.Flashloan.history)
 }
 
 export const useGetHistoryByAccount = (account: string) => {
@@ -249,7 +249,7 @@ export const useGetHistoryByAccount = (account: string) => {
 }
 
 export const useGetBetByRoundId = (account: string, roundId: string) => {
-  const bets = useSelector((state: State) => state.predictions.bets)
+  const bets = useSelector((state: State) => state.Flashloan.bets)
 
   if (!bets[account]) {
     return null
@@ -262,18 +262,18 @@ export const useGetBetByRoundId = (account: string, roundId: string) => {
   return bets[account][roundId]
 }
 
-export const useBetCanClaim = (account: string, roundId: string) => {
-  const bet = useGetBetByRoundId(account, roundId)
+// export const useBetCanClaim = (account: string, roundId: string) => {
+//   const bet = useGetBetByRoundId(account, roundId)
 
-  if (!bet) {
-    return false
-  }
+//   if (!bet) {
+//     return false
+//   }
 
-  return getCanClaim(bet)
-}
+//   return getCanClaim(bet)
+// }
 
 export const useGetLastOraclePrice = (): BigNumber => {
-  const lastOraclePrice = useSelector((state: State) => state.predictions.lastOraclePrice)
+  const lastOraclePrice = useSelector((state: State) => state.Flashloan.lastOraclePrice)
   return new BigNumber(lastOraclePrice)
 }
 

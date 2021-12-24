@@ -52,9 +52,9 @@ const Info: React.FC<CollectRoundWinningsModalProps> = ({
   const handleChange = (e) => {
       setUsername(e.target.value);
   }
-  const handleCLose = () => {
-    window.location.href = "/"
-  }
+  // const handleCLose = () => {
+  //   window.location.href = "/"
+  // }
   const handleChangeAvatar = () => {
     const fileUploader = document.getElementById('file-uploader');
     document.getElementById("lb-upload").click();
@@ -86,9 +86,9 @@ const Info: React.FC<CollectRoundWinningsModalProps> = ({
             </Heading>
          </Wrapper>   
         </ModalTitle>
-    <Boxer onClick={handleCLose}>
+    {/* <Boxer onClick={handleCLose}> */}
         <ModalCloseButton onDismiss={onDismiss}/>
-    </Boxer>
+    {/* </Boxer> */}
       </ModalHeaders>
       <ModalBody p="24px" maxHeight="90vh">
             <Flex flexDirection="column" justifyContent="space-around" alignItems="center">

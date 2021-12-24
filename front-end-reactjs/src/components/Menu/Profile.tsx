@@ -54,9 +54,9 @@ const Profile: React.FC<CollectRoundWinningsModalProps> = ({
   onSuccess,
 }) => {
 
-  const handleCLose = () => {
-    window.location.href = "/"
-  }
+  // const handleCLose = () => {
+  //   window.location.href = "/"
+  // }
   const [onpresentInfo] = useModal(
     <Info payout={100} roundId={"okok"} epoch={1} />,
     false,
@@ -72,9 +72,9 @@ const Profile: React.FC<CollectRoundWinningsModalProps> = ({
             </Heading>
          </Wrapper>   
         </ModalTitle>
-    <Boxer onClick={handleCLose}>
+    {/* <Boxer onClick={handleCLose}> */}
         <ModalCloseButton onDismiss={onDismiss}/>
-    </Boxer>
+    {/* </Boxer> */}
       </ModalHeaders>
       <ModalBody p="24px" maxHeight="90vh">
       <iframe className="video" title="Guide Video" height="231px" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation" src="https://youtube.com/embed/rDQuZzRuA3c?autoplay=0"></iframe>

@@ -55,7 +55,7 @@ export default {
     56: '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC',
     97: '',
   },
-  predictions: {
+  Flashloan: {
     56: '0x516ffd7D1e0Ca40b1879935B2De87cb20Fc1124b',
     97: '0x4f3140C74789F1D809420343ea83BcE52B7bbAA5',
   },

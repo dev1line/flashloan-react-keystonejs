@@ -29,7 +29,7 @@ module.exports = {
         "https://kovan.infura.io/v3/" + process.env.PROJECT_ID
       ),
       network_id: 42,
-      gas: 5000000,
+      gas: 30000000,
       gasPrice: 5000000000, // 5 Gwei
       skipDryRun: true,
     },
@@ -88,13 +88,14 @@ module.exports = {
       settings: {
         // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
-          enabled: false,
+          enabled: true,
           runs: 200,
         },
         // evmVersion: "byzantium",
         evmVersion: "istanbul",
       },
     },
+    // solc: { optimizer: { enabled: true, runs: 200 } }
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled: false to enabled: true

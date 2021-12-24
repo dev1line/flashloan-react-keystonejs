@@ -15,8 +15,8 @@ import useAuth from 'hooks/useAuth'
 import { ethers, Wallet, Contract } from "ethers";
 import contractDefinition from "../../config/abi/FlashloanMoneyLego.json"
 import { useAppDispatch } from 'state'
-import { setContract } from 'state/predictions'
 import { State } from '../../state/types'
+import { setContract } from 'state/Flashloan'
 declare let window: any;
 const Boxer = styled.div`
 & > div > nav > div:first-child > a {
@@ -28,7 +28,7 @@ const Menu = (props) => {
   const { login, logout } = useAuth()
   const { isDark, toggleTheme } = useTheme()
   const dispatch = useAppDispatch()
-  const abi = useSelector((state: State) => state.predictions.contract.abi)
+  const abi = useSelector((state: State) => state.Flashloan.contract.abi)
 
   useEffect(() => {
     async function runer() {
@@ -72,9 +72,19 @@ const Menu = (props) => {
     }
     runer();
   }, [account])
-
-  // console.log("account", account ,login,logout)
-// console.log("login", account)
+  const [onpresentReferral] = useModal(
+    <Referral payout={100} roundId={"okok"} epoch={1} />,
+    false,
+  )
+  useEffect(() => {
+    $("#aaa > div > div:last-child  > div:first-child > div:last-child > div:first-child").css("display", "none")
+    $("#aaa > div > div:last-child  > div:first-child > div:first-child > div:nth-child(6)").click(() => {
+      onpresentReferral()
+    })
+    $("#aaa > div >  nav:first-child > div:last-child > div:last-child").click(() => {
+      onpresentProfile()
+    })
+  },[]);
   const history = useHistory();
   const profile = {
     username: "yourname",
@@ -85,24 +95,21 @@ const Menu = (props) => {
   }
   const { currentLanguage, setLanguage, t } = useTranslation()
 
-  const [onpresentReferral] = useModal(
-    <Referral payout={100} roundId={"okok"} epoch={1} />,
-    false,
-  )
+ 
 
   const [onpresentProfile] = useModal(
     <Profile payout={100} roundId={"okok"} epoch={1} />,
     false,
   )
 
-  history.listen((location, action) => {
-    if(location.pathname === '/referral' ) {
-      onpresentReferral()
-    }
-    if(location.pathname === '/profile') {
-      onpresentProfile()
-    }
-  })
+  // history.listen((location, action) => {
+  //   if(location.pathname === '/referral' ) {
+  //     onpresentReferral()
+  //   }
+  //   if(location.pathname === '/profile') {
+  //     onpresentProfile()
+  //   }
+  // })
   
   useEffect(() => {
     const Imag = () => `<img src="images/icon.ico" id="imgLogo" />`
@@ -128,33 +135,26 @@ const Menu = (props) => {
     </style>`)
    $("#aaa > div > nav > div:first-child ").append(Imag)
    $("#aaa > div > nav > div:first-child ").append(`<p id="txtLg" >IT<span id="F_word">F</span>loan</p>`)
-  },[]);
-  return (
-    
-    <Boxer id="aaa">
-  <UikitMenu
-      account={account}
-      login={login}
-      logout={logout}
-      isDark={isDark}
-      toggleTheme={toggleTheme}
-      currentLang={currentLanguage.code}
-      langs={languageList}
-      setLang={setLanguage}
-      // cakePriceUsd={cakePriceUsd.toNumber()}
-      links={config(t)}
-      profile={profile}
-      // profile={{
-      //   username: profile?.username,
-      //   image: profile?.nft ? `/images/nfts/${profile.nft?.images.sm}` : undefined,
-      //   profileLink: '/profile',
-      //   noProfileLink: '/profile',
-      //   showPip: !profile?.username,
-      // }}
-      {...props}
-    />
-  </Boxer>
-);
 
-    }
+  },[]);
+
+  return (  
+    <Boxer id="aaa">
+      <UikitMenu
+          account={account}
+          login={login}
+          logout={logout}
+          isDark={isDark}
+          toggleTheme={toggleTheme}
+          currentLang={currentLanguage.code}
+          langs={languageList}
+          setLang={setLanguage}
+          cakePriceUsd={12.09}
+          links={config(t)}
+          profile={profile}
+          {...props}
+        />
+    </Boxer>
+  );
+}
 export default Menu

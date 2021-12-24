@@ -86,9 +86,9 @@ const Referral: React.FC<CollectRoundWinningsModalProps> = ({
   const handleChange = (e) => {
       console.log(e)
   }
-  const handleCLose = () => {
-    window.location.href = "/"
-  }
+  // const handleCLose = () => {
+  //   window.location.href = "/"
+  // }
   const [referralCode, setReferralCode] = useState("https://yourreferralinhere.com");
   const [isCopied, setIsCopied] = useState(false);
   const handleCopy = () => {
@@ -138,10 +138,10 @@ const Referral: React.FC<CollectRoundWinningsModalProps> = ({
             </Heading>
          </Wrapper>   
         </ModalTitle>
-    <Boxer onClick={handleCLose}>
+    {/* <Boxer onClick={handleCLose}> */}
         <ModalCloseButton onDismiss={onDismiss}/>
 
-    </Boxer>
+    {/* </Boxer> */}
       </ModalHeaders>
       <WrapperBoder>
           <ButtonMenus activeIndex={index} onItemClick={handleClickMenu} variant="subtle" scale="sm" >
