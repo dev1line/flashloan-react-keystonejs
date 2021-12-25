@@ -1,6 +1,7 @@
 const PROJECT_NAME = "Flashloans_CMS";
 const COOKIE_SECRET =
   "f7745f4df4394027716de160fb2acd6aac36699576a8be586b75ac09acf6a0df"; //P@ssw0rd1
+// const HOST = "localhost";
 const HOST = "localhost";
 const HOST_DB = "database";
 const PORT_DB = "27017";

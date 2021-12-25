@@ -7,15 +7,17 @@ services:
       - MONGO_INITDB_DATABASE=flashloans-database
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=Password1
+    ports:
+      - "27017:27017"
   mongo-dump:
     image: "mongo:latest"
     links:
       - database
     command: mongodump --uri mongodb://root:Password1@database:27017 -d admin
-    ports:
-      - "27017:27017"
+    # ports:
+    #   - "27017:27017"
     volumes:
-      - ./flashloans-data/admin:/dump/admin
+      - ./cms-keystonejs-docker-data/admin:/dump/admin
   # automate restore data
   # comment this code if you dont want restore data automacy
   # automatic data restore can be cause data duplicate, redundant.
@@ -24,15 +26,15 @@ services:
     links:
       - database
     volumes:
-      - ./flashloans-data:/data
+      - ./cms-keystonejs-docker-data:/data
     command: mongorestore --uri mongodb://root:Password1@database:27017 -d admin /data/admin
   # all in docker
   app:
     image: node:12-alpine
     container_name: "flashloan-server"
     command: sh -c "yarn dev:docker"
-    working_dir: /flashloans
+    working_dir: /cms-keystonejs-docker
     volumes:
-      - ./:/flashloans
+      - ./:/cms-keystonejs-docker
     ports:
       - "3001:3001"

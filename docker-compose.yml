@@ -1,0 +1,31 @@
+version: "3"
+services:
+  keystonejs:
+    image: node:14.18
+    # build:
+    #   context: ./cms-keystonejs
+    #   dockerfile: ./cms-keystonejs/Dockerfile
+    container_name: "cms-keystonejs"
+    command: sh -c "yarn && yarn dev:docker"
+    # commands:
+    #   - apk add --no-cache git
+    #   - yarn
+    working_dir: /cms-keystonejs-docker
+    volumes:
+      - ./cms-keystonejs:/cms-keystonejs-docker
+    ports:
+      - "3001:3001"
+  reactjs:
+    image: node:14.18
+    stdin_open: true
+    tty: true
+    container_name: "front-end-reactjs"
+    # build:
+    #   context: ./front-end-reactjs
+    #   dockerfile: ./front-end-reactjs/Dockerfile
+    command: sh -c "yarn && yarn start"
+    working_dir: /front-end-reactjs-docker
+    volumes:
+      - ./front-end-reactjs:/front-end-reactjs-docker
+    ports:
+      - "3000:3000"

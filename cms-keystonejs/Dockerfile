@@ -1,8 +1,8 @@
 FROM node:12-alpine
-WORKDIR /flashloans
+WORKDIR /cms-keystonejs-docker
 RUN apk --update add git
 COPY package.json .
-RUN npm install
+RUN yarn install --flat
 COPY . .
-RUN yarn build
-CMD ["yarn", "start"]
+# RUN yarn build
+CMD ["yarn", "dev"]

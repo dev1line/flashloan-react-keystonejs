@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-scripts start",
+    "start": "react-scripts start CI=true PORT=3000",
     "build": "react-scripts build CI=false",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

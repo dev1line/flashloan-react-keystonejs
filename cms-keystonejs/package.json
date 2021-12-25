@@ -13,8 +13,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development PORT=3001 DISABLE_LOGGING=true keystone dev",
     "dev:init": "cross-env NODE_ENV=development PORT=3001 INIT_DATA=true DISABLE_LOGGING=true keystone dev",
-    "dev:docker": "cross-env NODE_ENV=development PORT=3001 DISABLE_LOGGING=true DOCKER=true keystone dev",
-    "dev:init:docker": "cross-env NODE_ENV=development PORT=3001 INIT_DATA=true DISABLE_LOGGING=true DOCKER=true keystone dev",
+    "dev:docker": "cross-env NODE_ENV=development PORT=3001 DISABLE_LOGGING=true DOCKER=false keystone dev --openssl-legacy-provider",
+    "dev:init:docker": "cross-env NODE_ENV=development PORT=3001 INIT_DATA=true DISABLE_LOGGING=true DOCKER=true keystone dev --openssl-legacy-provider",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production PORT=3001 DOCKER=false keystone start",
     "start:init": "cross-env NODE_ENV=production PORT=3001 DOCKER=true INIT_DATA=true keystone start",

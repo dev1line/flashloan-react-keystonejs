@@ -23,12 +23,9 @@ const TokenSchema = require("./schema/Token");
 
 const { initialAction } = require("./inital-data");
 
-const mongoUri = process.env.DOCKER
-  ? DB_CONNECTION_ON_DOCKER
-  : process.env.NODE_ENV == "development"
-  ? DB_CONNECTION_ON_CLOUD
-  : DB_CONNECTION;
+const mongoUri = DB_CONNECTION_ON_CLOUD;
 
+console.log("URL", mongoUri);
 const adapterConfig = {
   mongoUri: mongoUri,
 };
