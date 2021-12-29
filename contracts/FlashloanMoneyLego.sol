@@ -714,8 +714,11 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
         uint256 amount = _amount;
 
         uint256 totalDebt = amount + fee;
-        profit = IERC20(reverse).balanceOf(address(this));
-        require(profit > totalDebt, "There is no profit! Reverting!");
+        profit = IERC20(reverse).balanceOf(address(this)) - (amount + fee);
+        require(
+            IERC20(reverse).balanceOf(address(this)) > totalDebt,
+            "There is no profit! Reverting!"
+        );
 
         transferFundsBackToPoolInternal(reverse, amount + fee);
     }
@@ -770,14 +773,15 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
     //     token.mint(to, amount);
     // }
 }
-// contract HandleToken {
-//     myToken public token;
 
-//     function createToken(string memory name, string memory symbol) public {
-//         token = new myToken(name, symbol);
-//     }
+contract HandleToken {
+    myToken public token;
 
-//     function mint(address to, uint amount) public {
-//         token.mint(to, amount);
-//     }
-// }
+    function createToken(string memory name, string memory symbol) public {
+        token = new myToken(name, symbol);
+    }
+
+    function mint(address to, uint256 amount) public {
+        token.mint(to, amount);
+    }
+}
