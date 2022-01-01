@@ -584,18 +584,12 @@ contract FlashLoanReceiverBase is IFlashLoanReceiver {
     }
 }
 
-contract myToken is ERC20PresetMinterPauser {
-    constructor(string memory name, string memory symbol)
-        public
-        ERC20PresetMinterPauser(name, symbol)
-    {}
-}
+
 
 contract FlashloanMoneyLego is FlashLoanReceiverBase {
     address public constant AaveLendingPoolAddressProviderAddress =
         0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5;
 
-    // myToken public token;
     uint256 public profit;
     mapping(address => uint256) public balances;
 
@@ -764,24 +758,5 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
     ) public {
         IERC20(tokenIn).approve(spender, amount);
     }
-
-    // function createToken(string memory name, string memory symbol) public {
-    //     token = new myToken(name, symbol);
-    // }
-
-    // function mint(address to, uint256 amount) public {
-    //     token.mint(to, amount);
-    // }
 }
 
-contract HandleToken {
-    myToken public token;
-
-    function createToken(string memory name, string memory symbol) public {
-        token = new myToken(name, symbol);
-    }
-
-    function mint(address to, uint256 amount) public {
-        token.mint(to, amount);
-    }
-}

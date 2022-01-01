@@ -4,10 +4,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const path = require("path");
 
 module.exports = {
-  contracts_build_directory: path.join(
-    __dirname,
-    "front-end-reactjs/src/config/abi"
-  ),
+  contracts_build_directory: path.join(__dirname, "abi"),
   networks: {
     development: {
       host: "127.0.0.1", // Localhost (default: none)
