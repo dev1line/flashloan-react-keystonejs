@@ -584,8 +584,6 @@ contract FlashLoanReceiverBase is IFlashLoanReceiver {
     }
 }
 
-
-
 contract FlashloanMoneyLego is FlashLoanReceiverBase {
     address public constant AaveLendingPoolAddressProviderAddress =
         0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5;
@@ -595,8 +593,7 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
 
     enum version {
         V1,
-        V2,
-        V3
+        V2
     }
     struct blocker {
         address tokenIn;
@@ -759,4 +756,3 @@ contract FlashloanMoneyLego is FlashLoanReceiverBase {
         IERC20(tokenIn).approve(spender, amount);
     }
 }
-
